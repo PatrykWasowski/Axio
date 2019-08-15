@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: 20,
+      size: 60,
       dimension: 9
     }
   }
@@ -16,9 +16,6 @@ class App extends React.Component {
       ...this.state,
       size: e.target.value
     });
-
-    
-    console.log(this.state);
   }
 
   dimensionChangeHandler = (e) => {
@@ -28,16 +25,15 @@ class App extends React.Component {
         dimension: e.target.value
       })
     }
-    console.log(this.state);
   }
 
 
   render() {
     return (
     <div className="App">
+      <input type="number" id="dimension" min="1" max="20" onChange={this.dimensionChangeHandler} defaultValue="9" />
+      <input type="range" id="size" min="10" max="100" step="2" onChange={this.sizeChangeHandler} defaultValue="60" />
       <Board size={this.state.size} dimension={this.state.dimension} />
-      <input type="number" min="1" max="20" id="dimension" onChange={this.dimensionChangeHandler} defaultValue="9"/>
-      <input type="range" id="size" min="10" max="100" step="5" onChange={this.sizeChangeHandler}/>
     </div>
     )
   }
