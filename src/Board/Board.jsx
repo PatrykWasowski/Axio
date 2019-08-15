@@ -21,7 +21,6 @@ class Board extends React.Component {
             }
             rows.push(<tr key={i}>{cells}</tr>)
         }
-        console.log(cellStyle);
 
         return rows;
     }
