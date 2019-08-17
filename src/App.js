@@ -3,18 +3,23 @@ import './App.css';
 import Board from './Board/Board';
 
 class App extends React.Component {
+  defaultSize = 50;
+  defaultDimension = 11;
+  defaultPlayersNumber = 2;
+  
   constructor(props) {
     super(props);
     this.state = {
-      size: 60,
-      dimension: 9
+      size: this.defaultSize,
+      dimension: this.defaultDimension,
+      playersNumber: this.defaultPlayersNumber
     }
   }
   
   sizeChangeHandler = (e) => {
     this.setState({
       ...this.state,
-      size: e.target.value
+      size: parseInt(e.target.value)
     });
   }
 
@@ -22,18 +27,27 @@ class App extends React.Component {
     if(e.target.value !== "") {
       this.setState({
         ...this.state,
-        dimension: e.target.value
+        dimension: parseInt(e.target.value)
       })
     }
   }
 
+  playersNumberChangeHandler = (e) => {
+    if(e.target.value !== "") {
+      this.setState({
+        ...this.state,
+        playersNumber: parseInt(e.target.value)
+      })
+    }
+  }
 
   render() {
     return (
     <div className="App">
-      <input type="number" id="dimension" min="1" max="20" onChange={this.dimensionChangeHandler} defaultValue="9" />
-      <input type="range" id="size" min="10" max="100" step="2" onChange={this.sizeChangeHandler} defaultValue="60" />
-      <Board size={this.state.size} dimension={this.state.dimension} />
+      <input type="number" id="playersNumber" min="2" max="4" onChange={this.playersNumberChangeHandler} defaultValue={this.defaultPlayersNumber} />
+      <input type="number" id="dimension" min="1" max="20" onChange={this.dimensionChangeHandler} defaultValue={this.defaultDimension} />
+      <input type="range" id="size" min="10" max="100" step="2" onChange={this.sizeChangeHandler} defaultValue={this.defaultSize} />
+      <Board size={this.state.size} dimension={this.state.dimension} playersNumber={this.state.playersNumber} />
     </div>
     )
   }
