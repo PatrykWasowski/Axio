@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Board from './Board/Board';
+import Brick from './Brick/Brick';
 
 class App extends React.Component {
   defaultSize = 50;
@@ -48,6 +49,9 @@ class App extends React.Component {
       <input type="number" id="dimension" min="1" max="20" onChange={this.dimensionChangeHandler} defaultValue={this.defaultDimension} />
       <input type="range" id="size" min="10" max="100" step="2" onChange={this.sizeChangeHandler} defaultValue={this.defaultSize} />
       <Board size={this.state.size} dimension={this.state.dimension} playersNumber={this.state.playersNumber} />
+      <br />
+      <br />
+      <Brick size={this.state.size} />
     </div>
     )
   }

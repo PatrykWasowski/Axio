@@ -1,39 +1,30 @@
 import React from 'react';
 import './Board.css';
+import Cell from '../Cell/Cell'
 
 class Board extends React.Component {    
     handleCellClick = (e) => {
         alert(e.target.id);
     }
 
-    determineCellStyle = (i, j) => {
-        const enabledCellStyle = {
-            height: this.props.size + 'px',
-            width: this.props.size + 'px',
-            border: '2px #43464B solid'
-        };
-
-        const disabledCellStyle = {
-            ...enabledCellStyle,
-            backgroundColor: '#c0c0c0'
-        }
-
-        if((this.props.playersNumber === 2 && (i < 2 || i > 8 || j < 2 || j > 8))
-                || (this.props.playersNumber === 3 && (i < 1 || i > 9 || j < 1 || j > 9))) {
-            return disabledCellStyle;
+    determineEnable = (i, j, playersNumber) => {
+        if((playersNumber === 2 && (i < 2 || i > 8 || j < 2 || j > 8))
+                || (playersNumber === 3 && (i < 1 || i > 9 || j < 1 || j > 9))) {
+            return false;
         } else {
-            return enabledCellStyle;
+            return true;
         }
     }
     
     populateTable = () => {
         let rows = [];
+        console.log(this.props)
+        const cellSize = this.props.size;
         for (let i = 0; i < this.props.dimension; i++) {
             let cells = [];
             for (let j = 0; j < this.props.dimension; j++) {
-                const usedCellStyle = this.determineCellStyle(i, j);
-
-                cells.push(<td id={i + " " + j} key={i+j} style={usedCellStyle} onMouseUp={this.handleCellClick}></td>);
+                const determineEnable = this.determineEnable(i, j, this.props.playersNumber);
+                cells.push(<Cell key={i + j} row={i} column={j} enabled={determineEnable} size={cellSize} />);
             }
             rows.push(<tr key={i}>{cells}</tr>)
         }
