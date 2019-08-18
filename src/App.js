@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import Board from './Board/Board';
 import PlayerBoard from './PlayerBoard/PlayerBoard';
+import ScoreTable from './ScoreTable/ScoreTable'
 
 class App extends React.Component {
-  defaultSize = 50;
+  defaultSize = 55;
   defaultDimension = 11;
   defaultPlayersNumber = 2;
   
@@ -19,7 +20,6 @@ class App extends React.Component {
   
   sizeChangeHandler = (e) => {
     this.setState({
-      ...this.state,
       size: parseInt(e.target.value)
     });
   }
@@ -27,7 +27,6 @@ class App extends React.Component {
   dimensionChangeHandler = (e) => {
     if(e.target.value !== "") {
       this.setState({
-        ...this.state,
         dimension: parseInt(e.target.value)
       })
     }
@@ -36,10 +35,13 @@ class App extends React.Component {
   playersNumberChangeHandler = (e) => {
     if(e.target.value !== "") {
       this.setState({
-        ...this.state,
         playersNumber: parseInt(e.target.value)
       })
     }
+  }
+
+  inlineBlockStyle = {
+    display: 'inline-block'
   }
 
   render() {
@@ -51,7 +53,10 @@ class App extends React.Component {
       <Board size={this.state.size} dimension={this.state.dimension} playersNumber={this.state.playersNumber} />
       <br />
       <br />
-      <PlayerBoard brickSize={this.state.size} />
+      <div>
+        <ScoreTable scores={[1, 2, 3, 4, 5]} />
+        <PlayerBoard brickSize={this.state.size} />
+      </div>
     </div>
     )
   }

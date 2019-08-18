@@ -38,7 +38,6 @@ class Brick extends React.Component{
     brickClickedHandler = () => {
         let newAngle = this.state.angle + 90;
         this.setState({
-            ...this.state,
             angle: newAngle
         })
     }

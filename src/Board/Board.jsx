@@ -33,7 +33,7 @@ class Board extends React.Component {
 
     render() {
         return (
-        <div>
+        <div className="board">
             <table id = "board">
                 <tbody>
                     { this.populateTable() }

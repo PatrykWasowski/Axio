@@ -2,3 +2,16 @@ body {
   text-align: center;
   background-color: #282c34;
 }
+
+.scoreBoard {
+  display: inline-block
+}
+
+.playerBoard {
+  margin: 10px auto;
+  display: inline-block;
+}
+
+.board {
+  margin: 0 auto;
+}

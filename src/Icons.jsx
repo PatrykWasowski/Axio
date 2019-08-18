@@ -7,22 +7,27 @@ import circle from './graphics/circle.png';
 export const Icons = [
     {
         id: 0,
-        url: 'url(' + fourArmStar + ')'
+        url: 'url(' + fourArmStar + ')',
+        color: '#008bff'
     },
     {
         id: 1,
-        url: 'url(' + twelveArmStar + ')'
+        url: 'url(' + twelveArmStar + ')',
+        color: '#ff1d1d'
     },
     {
         id: 2,
-        url: 'url(' + octagon + ')'
+        url: 'url(' + octagon + ')',
+        color: '#ea8d1e'
     },
     {
         id: 3,
-        url: 'url(' + ring + ')'
+        url: 'url(' + ring + ')',
+        color: '#a500f7'
     },
     {
         id: 4,
-        url: 'url(' + circle + ')'
+        url: 'url(' + circle + ')',
+        color: '#00e03d'
     }
 ]
