@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Board from './Board/Board';
-import Brick from './Brick/Brick';
+import PlayerBoard from './PlayerBoard/PlayerBoard';
 
 class App extends React.Component {
   defaultSize = 50;
@@ -51,7 +51,7 @@ class App extends React.Component {
       <Board size={this.state.size} dimension={this.state.dimension} playersNumber={this.state.playersNumber} />
       <br />
       <br />
-      <Brick size={this.state.size} />
+      <PlayerBoard brickSize={this.state.size} />
     </div>
     )
   }

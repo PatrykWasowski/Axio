@@ -77,7 +77,7 @@ class Cell extends React.Component {
     render() {
         console.log(this.state);
         const usedCellStyle = this.determineStyle();
-        return (<td id={this.props.row + " " + this.props.column} key={this.props.row+this.props.column} style={usedCellStyle} onMouseUp={this.handleCellClick}></td>)
+        return (<td id={this.props.row + " " + this.props.column} key={this.props.row+this.props.column} style={usedCellStyle} onMouseUp={this.handleCellClick} onClick={this.props.onClick}></td>)
     }
 }
 

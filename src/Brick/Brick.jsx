@@ -5,8 +5,6 @@ class Brick extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            firstCell: 2,
-            secondCell: 4,
             angle: 0
         }
     }
@@ -14,14 +12,26 @@ class Brick extends React.Component{
     basicStyle = {
         width: this.props.size + 'px',
         height: this.props.size + 'px',
+        margin: 0,
+        padding: 0,
         backgroundSize: 'contain'
     }
 
-    determineBrickStyle = (i) => {
+    determineHalfBrickStyle = (i) => {
         const url = Icons[i].url;
         return {
             ...this.basicStyle,
             backgroundImage: url
+        }
+    }
+
+    getWholeBrickStyle = () => {
+        return {
+            height: 2 * this.props.size + 'px',
+            width: this.props.size + 'px',
+            transform: `rotate(${this.state.angle}deg)`,
+            display: 'inline-block',
+            margin: '15px'
         }
     }
 
@@ -34,13 +44,9 @@ class Brick extends React.Component{
     }
 
     render() {
-        const usedStyle = this.determineBrickStyle(this.state.firstCell);
-        const usedStyle2 = this.determineBrickStyle(this.state.secondCell);
-        const brickStyle = {
-            height: 2 * this.props.size + 'px',
-            width: this.props.size + 'px',
-            transform: `rotate(${this.state.angle}deg)`
-        }
+        const usedStyle = this.determineHalfBrickStyle(this.props.firstCell);
+        const usedStyle2 = this.determineHalfBrickStyle(this.props.secondCell);
+        const brickStyle = this.getWholeBrickStyle();
         return (
             <div style={brickStyle} onClick={this.brickClickedHandler}>
                 <div style={usedStyle}></div>

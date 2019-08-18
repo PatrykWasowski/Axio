@@ -1,6 +1,6 @@
 import React from 'react';
 import './Board.css';
-import Cell from '../Cell/Cell'
+import Cell from '../Cell/Cell';
 
 class Board extends React.Component {    
     handleCellClick = (e) => {
@@ -18,13 +18,12 @@ class Board extends React.Component {
     
     populateTable = () => {
         let rows = [];
-        console.log(this.props)
         const cellSize = this.props.size;
         for (let i = 0; i < this.props.dimension; i++) {
             let cells = [];
             for (let j = 0; j < this.props.dimension; j++) {
                 const determineEnable = this.determineEnable(i, j, this.props.playersNumber);
-                cells.push(<Cell key={i + j} row={i} column={j} enabled={determineEnable} size={cellSize} />);
+                cells.push(<Cell key={i + j} row={i} column={j} enabled={determineEnable} size={cellSize} onClick={this.handleCellClick} />);
             }
             rows.push(<tr key={i}>{cells}</tr>)
         }
