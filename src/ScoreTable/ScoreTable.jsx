@@ -41,7 +41,8 @@ class ScoreRow extends React.Component {
     
     firstRowStyle = {
         ...this.commonRowStyle,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        fontSize: '14pt'
     }
     
     getFirstRow = () => {
@@ -98,7 +99,7 @@ class ScoreRow extends React.Component {
                 borderRadius: '3px',
                 boxShadow: '1px 1px 1px white',
                 margin: 'auto',
-                transform: `rotate(${this.props.symbol * 50}deg)`
+                transform: `rotate(${this.props.symbol * 18 + 10}deg)`
             }
             return <div style={dieStyle}></div>
         }

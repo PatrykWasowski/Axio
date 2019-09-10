@@ -4,11 +4,14 @@ body {
 }
 
 .scoreBoard {
-  display: inline-block
+  display: inline-block;
+  position: absolute;
+  left: 20px;
+  bottom: 30px;
 }
 
 .playerBoard {
-  margin: 10px auto;
+  margin: 5px auto;
   display: inline-block;
 }
 

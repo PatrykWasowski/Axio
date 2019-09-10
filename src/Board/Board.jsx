@@ -8,8 +8,8 @@ class Board extends React.Component {
     }
 
     determineEnable = (i, j, playersNumber) => {
-        if((playersNumber === 2 && (i < 2 || i > 8 || j < 2 || j > 8))
-                || (playersNumber === 3 && (i < 1 || i > 9 || j < 1 || j > 9))) {
+        if((playersNumber === 2 && (i < 2 || i > 10 || j < 2 || j > 10))
+                || (playersNumber === 3 && (i < 1 || i > 11 || j < 1 || j > 11))) {
             return false;
         } else {
             return true;

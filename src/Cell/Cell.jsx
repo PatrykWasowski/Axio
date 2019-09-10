@@ -31,35 +31,35 @@ class Cell extends React.Component {
         const row = this.props.row;
         const column = this.props.column;
 
-        if(row === 5 && column === 5) {
+        if(row === 6 && column === 6) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[0].url
             }
         }
 
-        if(row === 2 && column === 5) {
+        if(row === 2 && column === 6) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[1].url
             }
         }
 
-        if(row === 8 && column === 5) {
+        if(row === 10 && column === 6) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[2].url
             }
         }
 
-        if(row === 5 && column === 2) {
+        if(row === 6 && column === 2) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[3].url
             }
         }
 
-        if(row === 5 && column === 8) {
+        if(row === 6 && column === 10) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[4].url 

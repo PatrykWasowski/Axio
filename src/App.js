@@ -6,7 +6,7 @@ import ScoreTable from './ScoreTable/ScoreTable'
 
 class App extends React.Component {
   defaultSize = 55;
-  defaultDimension = 11;
+  defaultDimension = 13;
   defaultPlayersNumber = 2;
   
   constructor(props) {
