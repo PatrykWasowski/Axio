@@ -8,7 +8,7 @@ class App extends React.Component {
   defaultSize = 55;
   defaultDimension = 13;
   defaultPlayersNumber = 2;
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,8 +16,9 @@ class App extends React.Component {
       dimension: this.defaultDimension,
       playersNumber: this.defaultPlayersNumber
     }
+    this.board = React.createRef();
   }
-  
+
   sizeChangeHandler = (e) => {
     this.setState({
       size: parseInt(e.target.value)
@@ -25,7 +26,7 @@ class App extends React.Component {
   }
 
   dimensionChangeHandler = (e) => {
-    if(e.target.value !== "") {
+    if (e.target.value !== "") {
       this.setState({
         dimension: parseInt(e.target.value)
       })
@@ -33,7 +34,7 @@ class App extends React.Component {
   }
 
   playersNumberChangeHandler = (e) => {
-    if(e.target.value !== "") {
+    if (e.target.value !== "") {
       this.setState({
         playersNumber: parseInt(e.target.value)
       })
@@ -44,20 +45,39 @@ class App extends React.Component {
     display: 'inline-block'
   }
 
+  moveBrickHandler = (x, y, color1, color2, angle) => {
+    console.log("Try to find cell with x = " + x + " and y = " + y + " with shapes: " + color1 + " & " + color2 + " and angle = " + angle);
+    const foundCell = this.board.current.findCell(x, y);
+  }
+
+  findCell= (row, col) => {
+    console.log("Brick is in cell = [" + row + ", " + col + "]");
+  }
+
   render() {
     return (
-    <div className="App">
-      <input type="number" id="playersNumber" min="2" max="4" onChange={this.playersNumberChangeHandler} defaultValue={this.defaultPlayersNumber} />
+      <div className="App">
+        {/* <input type="number" id="playersNumber" min="2" max="4" onChange={this.playersNumberChangeHandler} defaultValue={this.defaultPlayersNumber} />
       <input type="number" id="dimension" min="1" max="20" onChange={this.dimensionChangeHandler} defaultValue={this.defaultDimension} />
-      <input type="range" id="size" min="10" max="100" step="2" onChange={this.sizeChangeHandler} defaultValue={this.defaultSize} />
-      <Board size={this.state.size} dimension={this.state.dimension} playersNumber={this.state.playersNumber} />
-      <br />
-      <br />
-      <div>
-        <ScoreTable scores={[1, 2, 3, 4, 5]} />
-        <PlayerBoard brickSize={this.state.size} />
+      <input type="range" id="size" min="10" max="100" step="2" onChange={this.sizeChangeHandler} defaultValue={this.defaultSize} /> */}
+        <Board
+          size={this.state.size}
+          dimension={this.state.dimension}
+          playersNumber={this.state.playersNumber} 
+          findCell={this.findCell}
+          ref={this.board}
+          />
+        <br />
+        <br />
+        <div>
+          <ScoreTable scores={[1, 2, 3, 4, 5]} />
+          <PlayerBoard
+            key={"playerboard"}
+            brickSize={this.state.size}
+            moveBrickHandler={this.moveBrickHandler}
+          />
+        </div>
       </div>
-    </div>
     )
   }
 }

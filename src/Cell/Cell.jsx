@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icons } from '../Icons';
+import ReactDOM from 'react-dom';
 
 class Cell extends React.Component {
     constructor(props) {
@@ -31,53 +32,66 @@ class Cell extends React.Component {
         const row = this.props.row;
         const column = this.props.column;
 
-        if(row === 6 && column === 6) {
+        if (row === 6 && column === 6) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[0].url
             }
         }
 
-        if(row === 2 && column === 6) {
+        if (row === 2 && column === 6) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[1].url
             }
         }
 
-        if(row === 10 && column === 6) {
+        if (row === 10 && column === 6) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[2].url
             }
         }
 
-        if(row === 6 && column === 2) {
+        if (row === 6 && column === 2) {
             return {
                 ...occupiedStyle,
                 backgroundImage: Icons[3].url
             }
         }
 
-        if(row === 6 && column === 10) {
+        if (row === 6 && column === 10) {
             return {
                 ...occupiedStyle,
-                backgroundImage: Icons[4].url 
+                backgroundImage: Icons[4].url
             }
         }
 
 
-        if(this.props.enabled === true) {
-            return enabledCellStyle; 
+        if (this.props.enabled === true) {
+            return enabledCellStyle;
         } else {
             return disabledCellStyle;
         }
     }
-    
+
+    getCellPosition = () => {
+        const boundingRect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+        return {x: boundingRect.x, y: boundingRect.y}; 
+    }
+
+    getCellRowAndCol = () => {
+        return {row: this.props.row, column: this.props.column};
+    }
+
     render() {
-        console.log(this.state);
         const usedCellStyle = this.determineStyle();
-        return (<td id={this.props.row + " " + this.props.column} key={this.props.row+this.props.column} style={usedCellStyle} onMouseUp={this.handleCellClick} onClick={this.props.onClick}></td>)
+        return (<td
+            id={this.props.row + " " + this.props.column}
+            key={this.props.row + this.props.column}
+            style={usedCellStyle}
+            onClick={this.props.onClick}>
+        </td>)
     }
 }
 

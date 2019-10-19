@@ -8,7 +8,7 @@ class ScoreTable extends React.Component {
             scores: this.props.scores
         }
     }
-    
+
     tableStyle = {
         backgroundColor: 'white'
     }
@@ -17,12 +17,14 @@ class ScoreTable extends React.Component {
         return (
             <div className="scoreBoard">
                 <table style={this.tableStyle}>
-                    <ScoreRow symbol="-1" />
-                    <ScoreRow symbol="1" score={this.state.scores[1]} />
-                    <ScoreRow symbol="4" score={this.state.scores[4]} />
-                    <ScoreRow symbol="0" score={this.state.scores[0]} />
-                    <ScoreRow symbol="2" score={this.state.scores[2]} />
-                    <ScoreRow symbol="3" score={this.state.scores[3]} />
+                    <tbody>
+                        <ScoreRow symbol="-1" />
+                        <ScoreRow symbol="1" score={this.state.scores[1]} />
+                        <ScoreRow symbol="4" score={this.state.scores[4]} />
+                        <ScoreRow symbol="0" score={this.state.scores[0]} />
+                        <ScoreRow symbol="2" score={this.state.scores[2]} />
+                        <ScoreRow symbol="3" score={this.state.scores[3]} />
+                    </tbody>
                 </table>
             </div>
         )
@@ -38,16 +40,16 @@ class ScoreRow extends React.Component {
         textAlign: 'center',
         outline: 'solid 1px black'
     }
-    
+
     firstRowStyle = {
         ...this.commonRowStyle,
         backgroundColor: 'white',
         fontSize: '14pt'
     }
-    
+
     getFirstRow = () => {
         let cells = [];
-        for(var i = 0; i < 19; i++) {
+        for (var i = 0; i < 19; i++) {
             let cell = <td key={"score" + this.props.symbol + i} style={this.firstRowStyle}>{i}</td>
             cells.push(cell);
         }
@@ -55,7 +57,7 @@ class ScoreRow extends React.Component {
     }
 
     getScoreRowStyle = (column) => {
-        if(column === 0) {
+        if (column === 0) {
             return {
                 ...this.commonRowStyle,
                 backgroundImage: Icons[this.props.symbol].url,
@@ -65,8 +67,8 @@ class ScoreRow extends React.Component {
             let opacity = 0.3;
             if (column > 10) {
                 opacity = 0.45;
-            } 
-            if(column === 18) {
+            }
+            if (column === 18) {
                 opacity = 0.7;
             }
 
@@ -80,8 +82,8 @@ class ScoreRow extends React.Component {
 
     convertHexToRgba = (hex, opacity) => {
         const r = parseInt(hex.slice(1, 3), 16),
-        g = parseInt(hex.slice(3, 5), 16),
-        b = parseInt(hex.slice(5, 7), 16);
+            g = parseInt(hex.slice(3, 5), 16),
+            b = parseInt(hex.slice(5, 7), 16);
 
         if (opacity) {
             return "rgba(" + r + ", " + g + ", " + b + ", " + opacity + ")";
@@ -91,7 +93,7 @@ class ScoreRow extends React.Component {
     }
 
     putDieIfMatchesScore = (column) => {
-        if(this.props.score === column) {
+        if (this.props.score === column) {
             const dieStyle = {
                 height: '19px',
                 width: '19px',
@@ -108,7 +110,7 @@ class ScoreRow extends React.Component {
 
     getScoreRow = () => {
         let cells = [];
-        for(var i = 0; i < 19; i++) {
+        for (var i = 0; i < 19; i++) {
             let cell = <td key={"score" + this.props.symbol + i} style={this.getScoreRowStyle(i)}>{parseInt(this.props.symbol) >= 0 ? this.putDieIfMatchesScore(i) : i}</td>
             cells.push(cell);
         }
@@ -116,7 +118,7 @@ class ScoreRow extends React.Component {
     }
 
     getRow = () => {
-        if(parseInt(this.props.symbol) < 0) {
+        if (parseInt(this.props.symbol) < 0) {
             return this.getFirstRow();
         } else {
             return this.getScoreRow();
@@ -126,7 +128,7 @@ class ScoreRow extends React.Component {
     render() {
         return (
             <tr>
-                { this.getRow() }
+                {this.getRow()}
             </tr>
         )
     }
